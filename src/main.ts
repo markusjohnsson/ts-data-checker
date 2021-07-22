@@ -1,7 +1,7 @@
 import * as fs from "fs";
 import * as ts from "typescript";
 
-export function checker(module: string, typeName: string) {
+export function checker(typeName: string, module: string) {
 
     const testScriptFileName = "./testScript.ts";
     const valueScriptFileName = "./valueScript.json";

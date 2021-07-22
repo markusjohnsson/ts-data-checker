@@ -8,15 +8,17 @@ export type BasicType = {
 };
 
 const sw = new StopWatch();
-sw.start('create LS');
+sw.start('create checker');
 const { checkValue } = checker("BasicType", "./tests/basic");
 sw.stop();
 
-sw.start('1 test warmup');
-assertTrue(checkValue({ foo: 1, bar: "test" }));
+sw.start('5 check warmup');
+for (let i = 0; i < 5; i++) {
+    assertTrue(checkValue({ foo: 1, bar: "test" }));
+}
 sw.stop();
-
-sw.start('200 tests');
+    
+sw.start('200 checks');
 for (let i = 0; i < 100; i++) {
     assertTrue(checkValue({ foo: 1, bar: "test" }));
     assertFalse(checkValue({ foo: true, bar: "test" }));

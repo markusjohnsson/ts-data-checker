@@ -1,4 +1,4 @@
-import { checker } from "../../src/main";
+import { checker } from "ts-data-checker";
 import express from "express";
 
 export function checkerMiddleware(typeName: string, module: string) {

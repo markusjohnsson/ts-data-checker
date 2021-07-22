@@ -2,11 +2,11 @@
   "name": "ts-data-checker",
   "version": "1.0.0",
   "description": "Type checks JSON data at runtime.",
-  "main": "index.js",
+  "main": "lib/main.js",
   "scripts": {
-    "test": "ts-node tests"
+    "test": "ts-node ./tests"
   },
-  "author": "",
+  "author": "Markus Johnsson <markus.johnsson@infviz.com>",
   "license": "MIT",
   "dependencies": {
     "typescript": "^4.3.5"

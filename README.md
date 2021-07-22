@@ -27,7 +27,6 @@ assertFalse(checkJson(`{ "foo": true, "bar": "test" }`)); // foo is not a number
 
 ```ts
 // example2.ts
-
 import { checker } from "ts-data-checker";
 import { assertTrue, assertFalse } from "./assert";
 
@@ -46,6 +45,14 @@ assertFalse(checkValue({ foo: true, bar: "test" })); // foo is not a number, che
 ***Note:*** since `ts-data-checker` uses incremental compilation, subsequent calls to `checkValue` will be faster than the first call.
 
 `checkValue` converts to JSON for you, so if you already have a JSON string, use `checkJson` instead. 
+
+## What else?
+
+Check the examples dir for an express middleware example.
+
+## Caveats
+
+The data model sources need to be available at runtime. Declarations should be enough though. 
 
 ## Is this a good idea? 
 

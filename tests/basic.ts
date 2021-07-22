@@ -1,4 +1,3 @@
-import { StopWatch } from "stopwatch-node";
 import { checker } from "../src/main";
 import { assertTrue, assertFalse } from "./assert";
 

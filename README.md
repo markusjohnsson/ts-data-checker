@@ -1,11 +1,11 @@
-# ts-json-checker
-Type checks JSON at runtime. Uses TypeScript language service to validate JSON string using TypeScript types.
+# ts-data-checker
+Type checks JSON at runtime. Uses TypeScript language service to validate JSON string using TypeScript types. I.e. it is TypeScript compiler running at runtime to validate your values.
 
 ## Check JSON (strings) at runtime
 
 ```ts
 // example1.ts
-import { checker } from "../src/main";
+import { checker } from "ts-data-checker";
 import { assertTrue, assertFalse } from "./assert";
 
 export type BasicType = {
@@ -13,7 +13,7 @@ export type BasicType = {
     bar: string;
 };
 
-// cf. `import { BasicType } from "./example2";`
+// cf. `import { BasicType } from "./example1";`
 const { checkJson } = checker("BasicType", "./example1"); 
 
 assertTrue(checkJson(`{ "foo": 1, "bar": "test" }`));
@@ -28,7 +28,7 @@ assertFalse(checkJson(`{ "foo": true, "bar": "test" }`)); // foo is not a number
 ```ts
 // example2.ts
 
-import { checker } from "../src/main";
+import { checker } from "ts-data-checker";
 import { assertTrue, assertFalse } from "./assert";
 
 export type BasicType = {

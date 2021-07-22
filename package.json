@@ -1,13 +1,13 @@
 {
-  "name": "tsjsoncheck",
+  "name": "ts-json-checker",
   "version": "1.0.0",
-  "description": "",
+  "description": "Type checks JSON at runtime.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "ts-node tests/basic.ts"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "typescript": "^4.3.5"
   },

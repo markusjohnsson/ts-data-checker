@@ -1,6 +1,10 @@
 # ts-data-checker
 Type checks JSON at runtime. Uses TypeScript language service to validate JSON string using TypeScript types. I.e. it is TypeScript compiler running at runtime to validate your values.
 
+```
+npm install ts-data-checker
+```
+
 ## Check JSON (strings) at runtime
 
 ```ts

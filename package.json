@@ -12,11 +12,12 @@
   },
   "author": "Markus Johnsson <markus.johnsson@infviz.com>",
   "license": "MIT",
-  "dependencies": {
+  "peerDependencies": {
     "typescript": "^4.3.5"
   },
   "devDependencies": {
     "@types/node": "^16.4.0",
-    "stopwatch-node": "^1.1.0"
+    "stopwatch-node": "^1.1.0",
+    "typescript": "^4.3.5"
   }
 }

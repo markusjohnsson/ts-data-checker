@@ -4,16 +4,14 @@ import * as ts from "typescript";
 export function checker(typeName: string, module: string) {
 
     const testScriptFileName = "./testScript.ts";
-    const valueScriptFileName = "./valueScript.json";
 
     const rootFileNames = [
         module,
-        testScriptFileName,
-        valueScriptFileName
+        testScriptFileName
     ];
 
     const options: ts.CompilerOptions = {
-        module: ts.ModuleKind.CommonJS,
+        module: ts.ModuleKind.ESNext,
         noEmit: true,
         resolveJsonModule: true,
         esModuleInterop: true
@@ -34,9 +32,6 @@ export function checker(typeName: string, module: string) {
         getScriptSnapshot: fileName => {
             if (fileName == testScriptFileName) {
                 return ts.ScriptSnapshot.fromString(testScript);
-            }
-            if (fileName == valueScriptFileName) {
-                return ts.ScriptSnapshot.fromString(valueScript);
             }
 
             if (!fs.existsSync(fileName)) {
@@ -63,24 +58,20 @@ export function checker(typeName: string, module: string) {
     }
 
     let testScript: string;
-    let valueScript: string;
 
     function checkJson(value: string) {
 
-        valueScript = value;
-
         testScript = `
             import { ${typeName} } from "${module}";
-            import val from "${valueScriptFileName}";
-            const v: ${typeName} = val;
+            const v: ${typeName} = ${value};
         `;
 
-        files[valueScriptFileName].version++;
+        files[testScriptFileName].version++;
 
         const ds = getDiagnostics(testScriptFileName)
 
         if (ds.length > 0) {
-            // ds.forEach(printDiagnostic);
+            // printDiagnostic(ds);
             return false;
         }
 

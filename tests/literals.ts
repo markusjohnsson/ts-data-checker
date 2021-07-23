@@ -1,10 +1,10 @@
 import { checker } from "../src/main";
 import { assertTrue, assertFalse } from "./assert";
 
-export type Num = number;
+export type Orientation = "vertical" | "horizontal";
 
-const { checkValue } = checker("Num", "./tests/literals");
-assertTrue(checkValue(1));
-assertFalse(checkValue("3"));
+const { checkValue } = checker("Orientation", "./tests/literals");
+assertTrue(checkValue("vertical"));
+assertFalse(checkValue("sideways"));
 
 console.log("OK");

@@ -10,7 +10,7 @@ app.post(
     checkerMiddleware("BlogPost", "./model"),
 
     (req, res) => {
-        // safe assignment since type is checked by checkerMiddleware
+        // safe assignment since body is parsed and typechecked by checkerMiddlewar
         const post: BlogPost = req.body;
 
         console.log("Creating blog post", post.title);
@@ -24,7 +24,7 @@ app.post(
     checkerMiddleware("Comment", "./model"),
 
     (req, res) => {
-        // safe assignment since type is checked by checkerMiddleware
+        // safe assignment since body is parsed and typechecked by checkerMiddleware
         const comment: Comment = req.body;
 
         console.log("Saving comment from", comment.email);

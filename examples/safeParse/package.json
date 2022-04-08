@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/geojson": "^7946.0.8"
+    "@types/geojson": "^7946.0.8",
+    "ts-data-checker": "^1.1.0"
   }
 }

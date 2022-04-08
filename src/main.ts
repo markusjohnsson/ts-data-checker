@@ -1,7 +1,13 @@
 import * as fs from "fs";
+import * as path from "path";
 import * as ts from "typescript";
 
-export function checker(typeName: string, module: string) {
+export type CheckerOptions = {
+    compilerOptions?: Partial<ts.CompilerOptions>;
+    workingDir?: string;
+}
+
+export function checker(typeName: string, module: string, opts?: CheckerOptions) {
 
     const testScriptFileName = "./testScript.ts";
 
@@ -14,8 +20,11 @@ export function checker(typeName: string, module: string) {
         module: ts.ModuleKind.ESNext,
         noEmit: true,
         resolveJsonModule: true,
-        esModuleInterop: true
+        esModuleInterop: true,
+        ... opts?.compilerOptions ?? {}
     };
+
+    const wd = opts?.workingDir ?? process.cwd();
 
     const files: ts.MapLike<{ version: number }> = {};
 
@@ -34,13 +43,15 @@ export function checker(typeName: string, module: string) {
                 return ts.ScriptSnapshot.fromString(testScript);
             }
 
+            fileName = path.isAbsolute(fileName) ? fileName : path.join(wd, fileName);
+
             if (!fs.existsSync(fileName)) {
                 return undefined;
             }
 
             return ts.ScriptSnapshot.fromString(fs.readFileSync(fileName).toString());
         },
-        getCurrentDirectory: () => process.cwd(),
+        getCurrentDirectory: () => wd,
         getCompilationSettings: () => options,
         getDefaultLibFileName: options => ts.getDefaultLibFilePath(options),
         fileExists: (p) => ts.sys.fileExists(p),
@@ -71,7 +82,9 @@ export function checker(typeName: string, module: string) {
         const ds = getDiagnostics(testScriptFileName)
 
         if (ds.length > 0) {
-            // printDiagnostic(ds);
+            if (process.env && process.env.TS_CHECKER_DIAGNOSTICS) {
+                printDiagnostic(ds);
+            }
             return false;
         }
 

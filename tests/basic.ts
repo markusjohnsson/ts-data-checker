@@ -6,7 +6,7 @@ export type BasicType = {
     bar: string;
 };
 
-const { checkValue } = checker("BasicType", "./tests/basic");
+const { checkValue } = checker("BasicType", "./basic", { workingDir: __dirname });
 
 assertTrue(checkValue({ foo: 1, bar: "test" }));
 assertFalse(checkValue({ foo: true, bar: "test" }));

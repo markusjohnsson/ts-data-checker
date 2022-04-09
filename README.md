@@ -134,13 +134,20 @@ assertFalse(checkValue({ foo: true, bar: "test" })); // foo is not a number, che
 
 `checkValue` converts to JSON for you, so if you already have a JSON string, use `checkJson` instead. 
 
+## Options
+
+You can specify an `options` object as a third parameter to `checker`. The options object has these properties:
+
+- `compilerOptions`: options passed to TypeScript. It corresponds to `compilerOptions` in `tsconfig.json`. It's type is determined by the TypeScript Compiler API.
+- `workingDir`: use this to specify a custom working directory. If this is not specified, the working directory of the process is used. Use for example `{ workingDir: __dirname }` to resolve relative to the current module.
+
 ## What else?
 
 Check the examples dir for other working examples.
 
 ## Caveats
 
-- **Source code:** The data model sources need to be available at runtime. Declarations should be enough though. 
+- **Source code:** The data model sources need to be available at runtime. Declarations should be enough though. Modules are resolved relative to the working directory of the process, unless `workingDir` is specified. See Options, above.
 - **Performance:** Performance will probably never be as good as custom coded type guards. 
 - **Limitations:** Might break for large structures.
 
